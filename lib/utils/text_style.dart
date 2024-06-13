@@ -5,7 +5,7 @@ class AppTextStyle {
   static TextStyle tittleBig1({color, required context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 17.sp,
       fontWeight: FontWeight.w700,
     );
@@ -19,7 +19,7 @@ class AppTextStyle {
   }) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       decoration: decoration ?? TextDecoration.none,
       decorationThickness: decorationThickness,
       fontSize: 16.sp,
@@ -30,7 +30,7 @@ class AppTextStyle {
   static TextStyle tittleBig3({color, required context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 15.sp,
       fontWeight: FontWeight.w700,
     );
@@ -44,7 +44,7 @@ class AppTextStyle {
   }) {
     return TextStyle(
       color: color ?? Colors.black87,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       decoration: decoration ?? TextDecoration.none,
       decorationThickness: decorationThickness,
       fontSize: 14.sp,
@@ -60,7 +60,7 @@ class AppTextStyle {
       required BuildContext context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 13.sp,
       fontWeight: fontWeight ?? FontWeight.w600,
     );
@@ -74,7 +74,7 @@ class AppTextStyle {
       required BuildContext context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 12.5.sp,
       decoration: decoration ?? TextDecoration.none,
       decorationThickness: decorationThickness,
@@ -89,7 +89,7 @@ class AppTextStyle {
       required BuildContext context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 11.5.sp,
       fontWeight: fontWeight ?? FontWeight.w600,
     );
@@ -99,7 +99,7 @@ class AppTextStyle {
       {Color? color, double? size, required BuildContext context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 10.3.sp,
       fontWeight: FontWeight.w600,
     );
@@ -155,7 +155,7 @@ class AppTextStyle {
   static TextStyle text1({Color? color, fontWeight, required context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 14.sp,
       fontWeight: fontWeight ?? FontWeight.w500,
     );
@@ -164,7 +164,7 @@ class AppTextStyle {
   static TextStyle text2({Color? color, fontWeight, required context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 13.sp,
       fontWeight: fontWeight ?? FontWeight.w500,
     );
@@ -173,7 +173,7 @@ class AppTextStyle {
   static TextStyle text3({Color? color, required context}) {
     return TextStyle(
       color: color ?? Colors.black,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 12.sp,
       fontWeight: FontWeight.w500,
     );
@@ -183,7 +183,7 @@ class AppTextStyle {
     return TextStyle(
       color: color ?? Colors.black,
       fontSize: 11.sp,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontWeight: FontWeight.w500,
     );
   }
@@ -194,7 +194,7 @@ class AppTextStyle {
       color: color ?? Colors.black54,
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
     );
   }
 
@@ -203,14 +203,14 @@ class AppTextStyle {
       color: color ?? Colors.black54,
       fontSize: 12.5.sp,
       fontWeight: FontWeight.w400,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
     );
   }
 
   static TextStyle paragraph3({Color? color, required context}) {
     return TextStyle(
       color: color ?? Colors.black54,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 11.sp,
       fontWeight: FontWeight.w400,
     );
@@ -219,7 +219,7 @@ class AppTextStyle {
   static TextStyle paragraph4({Color? color, required context}) {
     return TextStyle(
       color: color ?? Colors.black54,
-      fontFamily: 'Manrope',
+      // fontFamily: 'Manrope',
       fontSize: 9.5.sp,
       fontWeight: FontWeight.w400,
     );
