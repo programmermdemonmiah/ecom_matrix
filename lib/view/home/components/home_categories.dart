@@ -40,24 +40,45 @@ class HomeCategories extends StatelessWidget {
             ),
           ),
           Container(
-            height: 250.sp,
+            height: 310.sp,
             padding: edgeInsetsSym(2, 1),
             child: GridView.builder(
               itemCount: 8,
               shrinkWrap: true,
               primary: false,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                mainAxisSpacing: 2.sp,
-                crossAxisSpacing: 2.sp,
-                // mainAxisExtent: 1 / 1,
-                childAspectRatio: 4 / 5,
-              ),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 100.sp,
+                  mainAxisSpacing: 2.sp,
+                  crossAxisSpacing: 2.sp,
+                  mainAxisExtent: 150.sp
+                  // mainAxisExtent: 1 / 1,
+                  // childAspectRatio: 4 / 5,
+                  ),
               itemBuilder: (context, index) {
                 return Container(
-                  height: 100.sp,
+                  height: 150.sp,
                   width: 100.sp,
-                  color: orrageColor,
+                  color: whiteBg,
+                  padding: edgeInsetsSym(0.5, 0.5),
+                  child: Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        height: 90.sp,
+                        width: 100.sp,
+                        decoration: BoxDecoration(
+                          color: orrageColor,
+                        ),
+                        child: Text("image"),
+                      ),
+                      gapH(1.5),
+                      Text(
+                        "Category Name",
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.tittleSmall2(context: context),
+                      )
+                    ],
+                  ),
                 );
               },
             ),
