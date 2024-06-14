@@ -1,6 +1,5 @@
 import 'package:ecom_matrix/all_binding/get_di.dart';
 import 'package:ecom_matrix/utils/constant_colors.dart';
-import 'package:ecom_matrix/view/home/home_page.dart';
 import 'package:ecom_matrix/view/main/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           title: "Ecom Matrix",
-          home: MainPage(),
+          home: const MainPage(),
           debugShowCheckedModeBanner: false,
         );
       },

@@ -14,10 +14,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
-
     return GetBuilder<HomeController>(builder: (controller) {
+      // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      //     overlays: [SystemUiOverlay.bottom]);
       return Scaffold(
         backgroundColor: grayBg,
         body: Stack(
