@@ -1,5 +1,5 @@
 import 'package:ecom_matrix/view/home/home_page.dart';
-import 'package:ecom_matrix/view/message/message_page.dart';
+import 'package:ecom_matrix/view/live_support/live_support_page.dart';
 import 'package:ecom_matrix/widget/loder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,15 +13,17 @@ class MainController extends GetxController {
           // color: primaryColor,
         ),
         label: "Home"),
-    BottomNavigationBarItem(icon: Icon(Icons.message), label: "message"),
-    BottomNavigationBarItem(icon: Icon(Icons.shop_sharp), label: "cart"),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.shopping_cart_outlined), label: "cart"),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.support_agent), label: "Live Support"),
     BottomNavigationBarItem(icon: Icon(Icons.person), label: "profile"),
   ].obs;
 
   RxList screenList = [
     HomePage(),
-    MessagePage(),
-    LoaderWidget(child: Container(), isLoading: true),
+    LoaderWidget.style1(child: Container(), isLoading: true),
+    LiveSupportPage(),
     HomePage(),
   ].obs;
 }

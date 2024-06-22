@@ -1,8 +1,11 @@
+import 'package:ecom_matrix/controller/catergories_product/categories_product_controller.dart';
 import 'package:ecom_matrix/utils/constant_colors.dart';
 import 'package:ecom_matrix/utils/text_style.dart';
 import 'package:ecom_matrix/utils/ui_const.dart';
+import 'package:ecom_matrix/view/categories_product/categories_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({super.key});
@@ -46,6 +49,7 @@ class HomeCategories extends StatelessWidget {
               itemCount: 8,
               shrinkWrap: true,
               primary: false,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 100.sp,
                   mainAxisSpacing: 2.sp,
@@ -55,29 +59,39 @@ class HomeCategories extends StatelessWidget {
                   // childAspectRatio: 4 / 5,
                   ),
               itemBuilder: (context, index) {
-                return Container(
-                  height: 150.sp,
-                  width: 100.sp,
-                  color: whiteBg,
-                  padding: edgeInsetsSym(0.5, 0.5),
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: 90.sp,
-                        width: 100.sp,
-                        decoration: BoxDecoration(
-                          color: orrageColor,
+                return InkWell(
+                  splashColor: Colors.black12,
+                  onTap: () {
+                    Get.find<CategoriesProductController>().categoriesName =
+                        "catergoriesName";
+
+                    Get.to(const CategoriesProductsPage(
+                        categoriesName: "categoriesName"));
+                  },
+                  child: Container(
+                    height: 150.sp,
+                    width: 100.sp,
+                    color: whiteBg,
+                    padding: edgeInsetsSym(0.5, 0.5),
+                    child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          height: 90.sp,
+                          width: 100.sp,
+                          decoration: BoxDecoration(
+                            color: orrageColor,
+                          ),
+                          child: Text("image"),
                         ),
-                        child: Text("image"),
-                      ),
-                      gapH(1.5),
-                      Text(
-                        "Category Name",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.tittleSmall2(context: context),
-                      )
-                    ],
+                        gapH(1.5),
+                        Text(
+                          "Category Name",
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.tittleSmall2(context: context),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },

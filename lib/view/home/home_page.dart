@@ -3,9 +3,8 @@ import 'package:ecom_matrix/utils/constant_colors.dart';
 import 'package:ecom_matrix/utils/ui_const.dart';
 import 'package:ecom_matrix/view/home/components/home_appbar.dart';
 import 'package:ecom_matrix/view/home/components/home_categories.dart';
-import 'package:ecom_matrix/widget/custom_textformfild.dart';
+import 'package:ecom_matrix/view/home/components/home_populer_products.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -26,25 +25,60 @@ class HomePage extends StatelessWidget {
               controller: controller.scrollController,
               child: Column(
                 children: [
-                  Container(
-                    height: 300.sp,
-                    child: PageView.builder(
-                      itemCount: 11,
-                      controller: controller.pageController,
-                      itemBuilder: (context, i) {
-                        return Container(
+                  Obx(
+                    () => Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        SizedBox(
                           height: 300.sp,
-                          width: Get.width,
-                          color: i == 0 ||
-                                  i == 2 ||
-                                  i == 4 ||
-                                  i == 6 ||
-                                  i == 8 ||
-                                  i == 10
-                              ? Colors.red
-                              : Colors.pink,
-                        );
-                      },
+                          child: PageView.builder(
+                            itemCount: controller.pageSliderList.length,
+                            controller: controller.pageController,
+                            onPageChanged: (value) {
+                              controller.slidePageIndex.value = value;
+                            },
+                            itemBuilder: (context, i) {
+                              final data = controller.pageSliderList[i];
+                              return Container(
+                                height: 300.sp,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(data["image"]),
+                                        fit: BoxFit.cover)),
+                              );
+                            },
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 10.sp,
+                          child: Row(
+                            children: [
+                              for (int i = 0;
+                                  i < controller.pageSliderList.length;
+                                  i++)
+                                Padding(
+                                  padding: edgeInsetsSym(0.3, 0),
+                                  child: Container(
+                                    height: controller.slidePageIndex.value == i
+                                        ? 10.sp
+                                        : 8.sp,
+                                    width: controller.slidePageIndex.value == i
+                                        ? 10.sp
+                                        : 8.sp,
+                                    // constraints: BoxConstraints.,
+                                    decoration: BoxDecoration(
+                                        color:
+                                            controller.slidePageIndex.value == i
+                                                ? grayBg
+                                                : whiteBg,
+                                        shape: BoxShape.circle),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   gapH(5),
@@ -52,7 +86,9 @@ class HomePage extends StatelessWidget {
                     padding: screenPaddingH(),
                     child: Column(
                       children: [
-                        HomeCategories(),
+                        const HomeCategories(),
+                        gapH(5),
+                        HomePopulerProducts(),
                       ],
                     ),
                   ),

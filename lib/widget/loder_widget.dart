@@ -1,44 +1,196 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shimmer/shimmer.dart';
 
+enum LoaderType { style1, messageLoad, productLoad }
+
+//** type select  */
+
 class LoaderWidget extends StatelessWidget {
-  final Widget child;
   final bool isLoading;
-  const LoaderWidget({super.key, required this.child, required this.isLoading});
+  final Widget child;
+  final LoaderType loaderType;
+
+//if use the LoaderWidget ensure your state management
+  const LoaderWidget.style1({
+    super.key,
+    required this.isLoading,
+    required this.child,
+  }) : loaderType = LoaderType.style1;
+
+//if use the LoaderWidget ensure your state management
+
+  const LoaderWidget.messageLoad({
+    super.key,
+    required this.isLoading,
+    required this.child,
+  }) : loaderType = LoaderType.messageLoad;
+
+  //ensure your statemange ment =
+  const LoaderWidget.productLoad({
+    super.key,
+    required this.isLoading,
+    required this.child,
+  }) : loaderType = LoaderType.productLoad;
 
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return SafeArea(
-        child: ListView.builder(
-          itemCount: 12,
-          shrinkWrap: true,
-          primary: false,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return buildLoaderShimmer();
-          },
-        ),
-      );
+      switch (loaderType) {
+        case LoaderType.style1:
+          return _buildStyle1Loader();
+        case LoaderType.messageLoad:
+          return _buildMessageLoadLoader();
+
+        case LoaderType.productLoad:
+          return _productLoad();
+        default:
+          return _buildStyle1Loader();
+      }
     } else {
       return child;
     }
   }
 
-  Widget buildLoaderShimmer() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ShimmerWidget.ractangular(
-            height: 50.sp,
-            width: 200.sp,
+  Widget _buildStyle1Loader() {
+    return SafeArea(
+      child: ListView.builder(
+        itemCount: 12,
+        shrinkWrap: true,
+        primary: false,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              children: [
+                ShimmerWidget.circular(width: 50.sp, height: 50.sp),
+                SizedBox(
+                  width: 4.sp,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ShimmerWidget.rectangular(
+                        height: 40.sp,
+                        width: 200.sp,
+                      ),
+                      SizedBox(height: 3.sp),
+                      ShimmerWidget.rectangular(height: 30.sp),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildMessageLoadLoader() {
+    return SafeArea(
+      child: ListView.builder(
+        itemCount: 6,
+        shrinkWrap: true,
+        primary: false,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ShimmerWidget.circular(width: 40.sp, height: 40.sp),
+                    SizedBox(
+                      width: 4.sp,
+                    ),
+                    Expanded(
+                      child: ShimmerWidget.rectangular(
+                        height: 100.sp,
+                        width: 200.sp,
+                      ),
+                    ),
+                    SizedBox(width: 55.sp),
+                  ],
+                ),
+                SizedBox(
+                  height: 6.sp,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 55.sp),
+                    Expanded(
+                      child: ShimmerWidget.rectangular(
+                        height: 50.sp,
+                        width: 200.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 4.sp,
+                    ),
+                    ShimmerWidget.circular(width: 40.sp, height: 40.sp),
+                  ],
+                ),
+                SizedBox(
+                  height: 2.sp,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 55.sp),
+                    Expanded(
+                      child: ShimmerWidget.rectangular(
+                        height: 30.sp,
+                        width: 200.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 4.sp,
+                    ),
+                    SizedBox(width: 40.sp, height: 40.sp),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _productLoad() {
+    return GridView.custom(
+      shrinkWrap: true,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverWovenGridDelegate.count(
+        crossAxisCount: 2,
+        mainAxisSpacing: 1.5.sp,
+        crossAxisSpacing: 1.5.sp,
+        pattern: const [
+          WovenGridTile(0.8),
+          WovenGridTile(
+            5 / 8,
+            crossAxisRatio: 0.9,
+            alignment: AlignmentDirectional.centerEnd,
           ),
-          SizedBox(height: 3.sp),
-          ShimmerWidget.ractangular(height: 40.sp),
         ],
+      ),
+      childrenDelegate: SliverChildBuilderDelegate(
+        (context, index) {
+          return const ShimmerWidget.rectangular(height: 200);
+        },
+        childCount: 6,
       ),
     );
   }
@@ -48,14 +200,18 @@ class ShimmerWidget extends StatelessWidget {
   final double height;
   final double width;
   final ShapeBorder shapeBorder;
-  // const ShimmerWidget({super.key, required this.height, this.width = double.infinity});
 
-  const ShimmerWidget.ractangular(
-      {super.key, this.width = double.infinity, required this.height})
-      : this.shapeBorder = const RoundedRectangleBorder();
-  const ShimmerWidget.circular(
-      {super.key, required this.width, required this.height})
-      : this.shapeBorder = const CircleBorder();
+  const ShimmerWidget.rectangular({
+    super.key,
+    this.width = double.infinity,
+    required this.height,
+  }) : shapeBorder = const RoundedRectangleBorder();
+
+  const ShimmerWidget.circular({
+    super.key,
+    required this.width,
+    required this.height,
+  }) : shapeBorder = const CircleBorder();
 
   @override
   Widget build(BuildContext context) {
