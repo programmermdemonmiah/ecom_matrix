@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(builder: (controller) {
+    return GetBuilder<HomeController>(builder: (HomeController controller) {
       // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       //     overlays: [SystemUiOverlay.bottom]);
       return Scaffold(
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                     padding: screenPaddingH(),
                     child: Column(
                       children: [
-                        const HomeCategories(),
+                        HomeCategories(controller: controller),
                         gapH(5),
                         HomePopulerProducts(),
                       ],

@@ -1,14 +1,14 @@
-import 'package:ecom_matrix/controller/catergories_product/categories_product_controller.dart';
+
+import 'package:ecom_matrix/controller/home/home_controller.dart';
 import 'package:ecom_matrix/utils/constant_colors.dart';
 import 'package:ecom_matrix/utils/text_style.dart';
 import 'package:ecom_matrix/utils/ui_const.dart';
-import 'package:ecom_matrix/view/categories_product/categories_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class HomeCategories extends StatelessWidget {
-  const HomeCategories({super.key});
+  final HomeController controller;
+  const HomeCategories({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +62,8 @@ class HomeCategories extends StatelessWidget {
                 return InkWell(
                   splashColor: Colors.black12,
                   onTap: () {
-                    Get.find<CategoriesProductController>().categoriesName =
-                        "catergoriesName";
-
-                    Get.to(const CategoriesProductsPage(
-                        categoriesName: "categoriesName"));
+                    controller.navigateCategoriesProductPage(
+                        categoriesName: "Categories Name Provide$index");
                   },
                   child: Container(
                     height: 150.sp,
@@ -86,7 +83,7 @@ class HomeCategories extends StatelessWidget {
                         ),
                         gapH(1.5),
                         Text(
-                          "Category Name",
+                          "Category Name$index",
                           textAlign: TextAlign.center,
                           style: AppTextStyle.tittleSmall2(context: context),
                         )

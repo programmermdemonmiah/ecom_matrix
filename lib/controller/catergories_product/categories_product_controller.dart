@@ -1,13 +1,15 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoriesProductController extends GetxController {
   @override
   void onInit() {
-    // TODO: implement onInit
+    //init state
     super.onInit();
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //     overlays: [SystemUiOverlay.top]);
+    categoriesName.value = Get.arguments['categoriesName'];
     getProducts();
     scrollController.addListener(() {
       if (scrollController.offset > 0 && !isScrolled.value) {
@@ -20,12 +22,16 @@ class CategoriesProductController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
+    scrollController.dispose();
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //     overlays: [SystemUiOverlay.bottom]);
+
+    ///  implement onClose
     super.onClose();
   }
 
   /////==========================
-  String? categoriesName;
+  RxString categoriesName = ''.obs;
   RxBool isScrolled = false.obs;
   final RxBool _isLoading = true.obs;
   set setLoading(bool value) => _isLoading.value = value;
@@ -47,20 +53,20 @@ class CategoriesProductController extends GetxController {
   getProducts() {
     setLoading = true;
     update();
-    if (categoriesName != null) {
-      String? data;
-      for (int i = 0; i < 20; i++) {
-        data = i.toString();
-      }
-      update();
-      setLoading = false;
-      print(categoriesName);
-    }
+    print("categoriesName: ${categoriesName.value}");
+    // if (categoriesName.value != '') {
+    //   String? data;
+    //   for (int i = 0; i < 20; i++) {
+    //     data = i.toString();
+    //   }
+    //   update();
+    //   setLoading = false;
+    //   print(categoriesName);
+    // }
     Future.delayed(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
       () {
         setLoading = false;
-        print(isLoading);
       },
     );
     update();

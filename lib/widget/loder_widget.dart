@@ -62,27 +62,58 @@ class LoaderWidget extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              children: [
-                ShimmerWidget.circular(width: 50.sp, height: 50.sp),
-                SizedBox(
-                  width: 4.sp,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ShimmerWidget.rectangular(
-                        height: 40.sp,
-                        width: 200.sp,
-                      ),
-                      SizedBox(height: 3.sp),
-                      ShimmerWidget.rectangular(height: 30.sp),
-                    ],
+            padding: EdgeInsets.symmetric(
+                horizontal: 16, vertical: index == 0 ? 16 : 8),
+            child: Container(
+              height: 120,
+              padding: const EdgeInsets.all(8),
+              child: const Row(
+                children: [
+                  ShimmerWidget.rectangular(
+                    height: 120,
+                    width: 100,
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ShimmerWidget.rectangular(
+                          height: 20,
+                          width: 200,
+                        ),
+                        SizedBox(height: 8),
+                        ShimmerWidget.rectangular(
+                          height: 12,
+                          width: 100,
+                        ),
+                        SizedBox(height: 8),
+                        ShimmerWidget.rectangular(
+                          height: 12,
+                          width: 100,
+                        ),
+                        SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ShimmerWidget.rectangular(
+                              height: 12,
+                              width: 100,
+                            ),
+                            ShimmerWidget.rectangular(
+                              height: 15,
+                              width: 100,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },

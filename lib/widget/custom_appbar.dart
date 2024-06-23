@@ -9,16 +9,24 @@ PreferredSizeWidget customAppBar(
     {required String appBarTitle,
     required BuildContext context,
     // required String appBarSubTitle,
+    bool Function(ScrollNotification)? notificationPredicate,
     Color? appBarBg,
     Color? leadingColor,
     bool isActionIcon = true,
+    List<Widget>? actions,
+    void Function()? leadingOnTap,
     Color? textColor}) {
   return AppBar(
     backgroundColor: appBarBg ?? primaryColor,
+    primary: true,
+    foregroundColor: appBarBg ?? primaryColor,
+    notificationPredicate: notificationPredicate ?? (notification) => true,
+    automaticallyImplyLeading: false,
     leading: InkWell(
-        onTap: () {
-          Get.back();
-        },
+        onTap: leadingOnTap ??
+            () {
+              Get.back();
+            },
         child: Icon(
           Icons.arrow_back_ios_new_outlined,
           color: leadingColor ?? Colors.white,
@@ -40,14 +48,15 @@ PreferredSizeWidget customAppBar(
       ],
     ),
     actions: isActionIcon
-        ? [
-            Icon(
-              Icons.shopping_cart_outlined,
-              color: leadingColor ?? Colors.white,
-              size: 25.sp,
-            ),
-            gapW(3),
-          ]
+        ? actions ??
+            [
+              Icon(
+                Icons.shopping_cart_outlined,
+                color: leadingColor ?? Colors.white,
+                size: 25.sp,
+              ),
+              gapW(3),
+            ]
         : [],
   );
 }

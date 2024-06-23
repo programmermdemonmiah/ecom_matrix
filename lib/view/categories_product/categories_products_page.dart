@@ -5,6 +5,7 @@ import 'package:ecom_matrix/utils/ui_const.dart';
 import 'package:ecom_matrix/widget/custom_appbar.dart';
 import 'package:ecom_matrix/widget/loder_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -17,20 +18,22 @@ class CategoriesProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CategoriesProductController>(builder: (controller) {
       return Obx(() => Scaffold(
+            primary: false,
+            backgroundColor: grayBg,
             appBar: customAppBar(
+                notificationPredicate: (notification) => false,
                 appBarTitle: categoriesName,
                 appBarBg: controller.isScrolled.value ? primaryColor : grayBg,
                 context: context,
                 leadingColor:
                     controller.isScrolled.value ? grayBg : Colors.black,
                 textColor: controller.isScrolled.value ? grayBg : Colors.black),
-            backgroundColor: grayBg,
             body: SafeArea(
                 child: Column(
               children: [
                 Container(
                   height: 50.sp,
-                  padding: edgeInsetsOnly(0, 0, 1, 3),
+                  padding: edgeInsetsOnly(0, 0, 2, 3),
                   alignment: Alignment.center,
                   width: double.infinity,
                   color: controller.isScrolled.value ? primaryColor : grayBg,
@@ -75,7 +78,7 @@ class CategoriesProductsPage extends StatelessWidget {
                                           : 1.sp,
                                       color: controller.isScrolled.value
                                           ? grayBg
-                                          : Colors.black)),
+                                          : Colors.black54)),
                               child: Text(
                                 catergoriesValue,
                                 style: controller.categoriesValue.value ==
@@ -129,7 +132,7 @@ class CategoriesProductsPage extends StatelessWidget {
                                       color: orrageColor,
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "${index + 1}",
+                                        "product ${index + 1}",
                                       ));
                                 },
                                 childCount: 20,

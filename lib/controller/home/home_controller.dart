@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:ecom_matrix/view/categories_product/categories_products_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -76,5 +76,13 @@ class HomeController extends GetxController {
         curve: Curves.easeInOut,
       );
     });
+  }
+
+  navigateCategoriesProductPage({required String categoriesName}) {
+    // Get.find<CategoriesProductController>().categoriesName.value =
+    //     "catergoriesName";
+    // update();
+    Get.to(CategoriesProductsPage(categoriesName: categoriesName),
+        arguments: {'categoriesName': categoriesName});
   }
 }
