@@ -3,14 +3,21 @@ import 'package:ecom_matrix/view/categories_product/categories_products_page.dar
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    setLoading = true;
+    update();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.bottom]);
     startAutoSlide();
+    Future.delayed(
+      Duration(seconds: 5),
+      () => setLoading = false,
+    );
     scrollController.addListener(() {
       if (scrollController.offset > 0 && !isScrolled.value) {
         isScrolled.value = true;
@@ -36,9 +43,9 @@ class HomeController extends GetxController {
   PageController pageController = PageController();
   late Timer _autoSlideTimer;
   final RxInt slidePageIndex = 0.obs;
-  late bool _isLoading = false;
-  set setLoading(bool value) => _isLoading = value;
-  bool get isLoading => _isLoading;
+  final RxBool _isLoading = false.obs;
+  set setLoading(bool value) => _isLoading.value = value;
+  bool get isLoading => _isLoading.value;
 
   RxList pageSliderList = [
     {

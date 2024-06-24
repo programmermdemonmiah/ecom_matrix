@@ -13,12 +13,14 @@ PreferredSizeWidget customAppBar(
     Color? appBarBg,
     Color? leadingColor,
     bool isActionIcon = true,
+    final bool? centerTitle,
     List<Widget>? actions,
     void Function()? leadingOnTap,
     Color? textColor}) {
   return AppBar(
     backgroundColor: appBarBg ?? primaryColor,
     primary: true,
+    centerTitle: centerTitle ?? false,
     foregroundColor: appBarBg ?? primaryColor,
     notificationPredicate: notificationPredicate ?? (notification) => true,
     automaticallyImplyLeading: false,
@@ -28,7 +30,7 @@ PreferredSizeWidget customAppBar(
               Get.back();
             },
         child: Icon(
-          Icons.arrow_back_ios_new_outlined,
+          Icons.arrow_back_ios_new_rounded,
           color: leadingColor ?? Colors.white,
           size: 25.sp,
         )),

@@ -88,7 +88,8 @@ class HomePage extends StatelessWidget {
                       children: [
                         HomeCategories(controller: controller),
                         gapH(5),
-                        HomePopulerProducts(),
+                        HomePopulerProducts(controller: controller),
+                        gapH(4),
                       ],
                     ),
                   ),

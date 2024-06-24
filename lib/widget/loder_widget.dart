@@ -209,10 +209,10 @@ class LoaderWidget extends StatelessWidget {
         mainAxisSpacing: 1.5.sp,
         crossAxisSpacing: 1.5.sp,
         pattern: const [
-          WovenGridTile(0.8),
+          WovenGridTile(0.75),
           WovenGridTile(
             5 / 8,
-            crossAxisRatio: 0.9,
+            crossAxisRatio: 0.95,
             alignment: AlignmentDirectional.centerEnd,
           ),
         ],

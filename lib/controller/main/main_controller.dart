@@ -1,6 +1,7 @@
 import 'package:ecom_matrix/view/cart/cart_page.dart';
 import 'package:ecom_matrix/view/home/home_page.dart';
 import 'package:ecom_matrix/view/live_support/live_support_page.dart';
+import 'package:ecom_matrix/view/profile/profile_page.dart';
 import 'package:ecom_matrix/widget/loder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,6 @@ class MainController extends GetxController {
     HomePage(),
     CartPage(),
     LiveSupportPage(),
-    HomePage(),
+    ProfilePage(),
   ].obs;
 }
