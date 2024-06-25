@@ -58,7 +58,7 @@ class CartPage extends StatelessWidget {
                     ]),
                 body: SafeArea(
                   child: Obx(
-                    () => LoaderWidget.style1(
+                    () => LoaderWidget.cartProductLoad(
                       isLoading: controller.isLoading,
                       child: Padding(
                         padding: controller.isLongPressed.value

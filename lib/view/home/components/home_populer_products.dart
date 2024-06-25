@@ -1,7 +1,9 @@
 import 'package:ecom_matrix/controller/home/home_controller.dart';
+import 'package:ecom_matrix/model/product/product_model.dart';
 import 'package:ecom_matrix/utils/constant_colors.dart';
 import 'package:ecom_matrix/utils/text_style.dart';
 import 'package:ecom_matrix/utils/ui_const.dart';
+import 'package:ecom_matrix/view/product_details/product_details_page.dart';
 import 'package:ecom_matrix/widget/loder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,62 +86,75 @@ class HomePopulerProducts extends StatelessWidget {
                   ),
                   childrenDelegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return Container(
-                        padding: edgeInsetsSym(1, 1),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              // alignment: Alignment.center,
-                              // decoration: BoxDecoration(),
-                              child: Container(
-                                height: 160.sp,
-                                // width: 100.sp,
-                                padding: edgeInsetsSym(1.4, 1.2),
-                                alignment: Alignment.topRight,
-                                decoration: BoxDecoration(
-                                  borderRadius: radiusAll(3),
-                                  // color: orrageColor,
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                        "https://4.imimg.com/data4/RU/VC/MY-11853389/men-s-jackets-500x500.jpg",
-                                      ),
-                                      fit: BoxFit.fill),
-                                ),
-                                child: Icon(
-                                  Icons.shopping_cart,
-                                  size: 22.sp,
-                                  color: orrageColor,
+                      return InkWell(
+                        onTap: () => Get.to(ProductDetailsPage(
+                          product: ProductModel(
+                              categoryId: 501,
+                              categoryName: "shirt",
+                              id: 1,
+                              image:
+                                  "https://4.imimg.com/data4/RU/VC/MY-11853389/men-s-jackets-500x500.jpg",
+                              title: "t-shirt"),
+                        )),
+                        child: Container(
+                          padding: edgeInsetsSym(1, 1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Card(
+                                // alignment: Alignment.center,
+                                // decoration: BoxDecoration(),
+                                child: Container(
+                                  height: 160.sp,
+                                  // width: 100.sp,
+                                  padding: edgeInsetsSym(1.4, 1.2),
+                                  alignment: Alignment.topRight,
+                                  decoration: BoxDecoration(
+                                    borderRadius: radiusAll(3),
+                                    // color: orrageColor,
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                          "https://4.imimg.com/data4/RU/VC/MY-11853389/men-s-jackets-500x500.jpg",
+                                        ),
+                                        fit: BoxFit.fill),
+                                  ),
+                                  child: Icon(
+                                    Icons.shopping_cart,
+                                    size: 22.sp,
+                                    color: orrageColor,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Text(
-                              "Products title ",
-                              maxLines: 2,
-                              style: AppTextStyle.tittleBig3(context: context),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "৳500",
-                                  style:
-                                      AppTextStyle.tittleBig4(context: context),
-                                ),
-                                Container(
-                                  padding: edgeInsetsSym(3, 1),
-                                  decoration: BoxDecoration(
-                                      color: orrageColor,
-                                      borderRadius: radiusAll(4)),
-                                  child: Text(
-                                    "Buy now",
+                              Text(
+                                "Products title ",
+                                maxLines: 2,
+                                style:
+                                    AppTextStyle.tittleBig3(context: context),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "৳500",
                                     style: AppTextStyle.tittleBig4(
                                         context: context),
                                   ),
-                                ),
-                              ],
-                            )
-                          ],
+                                  Container(
+                                    padding: edgeInsetsSym(3, 1),
+                                    decoration: BoxDecoration(
+                                        color: orrageColor,
+                                        borderRadius: radiusAll(4)),
+                                    child: Text(
+                                      "Buy now",
+                                      style: AppTextStyle.tittleBig4(
+                                          context: context),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },

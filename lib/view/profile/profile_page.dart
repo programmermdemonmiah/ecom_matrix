@@ -107,7 +107,8 @@ class ProfilePage extends StatelessWidget {
               gapH(4),
               Container(
                 padding: edgeInsetsSym(2, 2),
-                decoration: BoxDecoration(color: Colors.white),
+                color: whiteBg,
+                // decoration: BoxDecoration(color: Colors.white),
                 child: Column(
                   children: [
                     _customListTile(

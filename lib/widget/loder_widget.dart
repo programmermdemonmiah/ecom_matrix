@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shimmer/shimmer.dart';
 
-enum LoaderType { style1, messageLoad, productLoad }
+enum LoaderType { cartProductLoad, messageLoad, productLoad }
 
 //** type select  */
 
@@ -13,11 +13,11 @@ class LoaderWidget extends StatelessWidget {
   final LoaderType loaderType;
 
 //if use the LoaderWidget ensure your state management
-  const LoaderWidget.style1({
+  const LoaderWidget.cartProductLoad({
     super.key,
     required this.isLoading,
     required this.child,
-  }) : loaderType = LoaderType.style1;
+  }) : loaderType = LoaderType.cartProductLoad;
 
 //if use the LoaderWidget ensure your state management
 
@@ -38,22 +38,22 @@ class LoaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (isLoading) {
       switch (loaderType) {
-        case LoaderType.style1:
-          return _buildStyle1Loader();
+        case LoaderType.cartProductLoad:
+          return _buildCartProductLoader();
         case LoaderType.messageLoad:
           return _buildMessageLoadLoader();
 
         case LoaderType.productLoad:
           return _productLoad();
         default:
-          return _buildStyle1Loader();
+          return _buildCartProductLoader();
       }
     } else {
       return child;
     }
   }
 
-  Widget _buildStyle1Loader() {
+  Widget _buildCartProductLoader() {
     return SafeArea(
       child: ListView.builder(
         itemCount: 12,
